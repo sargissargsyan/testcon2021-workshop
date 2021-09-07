@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
  */
 public abstract class BasePage {
     protected WebDriver driver;
+    protected static final String BASE_URL = "https://tree.taiga.io";
 
     public BasePage() {
         this.driver = DriverHelper.get().getDriver();

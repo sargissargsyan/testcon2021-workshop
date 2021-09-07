@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * @author Sargis Sargsyan on 9/7/21
@@ -17,5 +18,15 @@ public class ApiHelper {
         response = Client.post("/projects", jsonProject);
         String jsonString = response.body().string();
         return JsonParser.parseString(jsonString).getAsJsonObject();
+    }
+
+    public static JsonObject createProject() throws IOException {
+        JsonObject project = new JsonObject();
+        project.addProperty("name",
+                "TestCon Workshop Project " + new Date().toString());
+        project.addProperty("description", "TestCon Description");
+        project.addProperty("creation_template", 1);
+        project.addProperty("is_private", false);
+        return createProject(project);
     }
 }

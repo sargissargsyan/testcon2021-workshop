@@ -1,6 +1,7 @@
 import api.Client;
 import base.DriverHelper;
 import com.google.gson.JsonObject;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
