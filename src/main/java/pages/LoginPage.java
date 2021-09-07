@@ -20,6 +20,10 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".login-form button")
     private WebElement loginButton;
 
+    public LoginPage() {
+        driver.get(getUrl());
+    }
+
     @Override
     public String getUrl() {
         return "https://tree.taiga.io/login";
