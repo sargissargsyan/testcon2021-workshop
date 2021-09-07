@@ -26,6 +26,22 @@ public class ProjectTest extends SeleniumBase {
         ProjectPage projectPage = new ProjectPage(project);
     }
 
+    @Test
+    public void assignIssue() throws IOException {
+        Client.login("testcon2021@gmail.com", "Armenia2021");
+        project = ApiHelper.createProject();
+        JsonObject issue = new JsonObject();
+        issue.addProperty("subject", "TestCon Issue");
+        issue.addProperty("project", project.get("id").getAsString());
+        issue.addProperty("description", "Test Description");
+        issue.addProperty("assigned_to",
+                ApiHelper.getCurrentUser().get("id").getAsString());
+        ApiHelper.createIssue(issue);
+        ProjectPage projectPage = new ProjectPage(project);
+
+
+    }
+
     @AfterMethod
     public void tearDown() {
         if (issue != null) {
