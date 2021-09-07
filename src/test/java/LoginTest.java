@@ -1,5 +1,8 @@
+import api.ApiHelper;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+
+import java.io.IOException;
 
 /**
  * @author Sargis Sargsyan on 9/7/21
@@ -13,8 +16,9 @@ public class LoginTest extends SeleniumBase {
     }
 
     @Test
-    public void loginViaApi() {
+    public void loginViaApi() throws IOException {
         login("testcon2021@gmail.com", "Armenia2021");
+        System.out.println(ApiHelper.getCurrentUser().toString());
     }
 }
 

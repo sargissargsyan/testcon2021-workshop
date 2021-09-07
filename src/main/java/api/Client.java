@@ -57,7 +57,7 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        assert  response != null;
+        assert response != null;
         if (!response.isSuccessful()) {
             throw new Error("HTTP error Code: " + response.code());
         }
@@ -79,10 +79,32 @@ public class Client {
             e.printStackTrace();
         }
 
-        assert  response != null;
-        if(!response.isSuccessful()) {
-            throw  new Error("HTTP error Code: " + response.code());
+        assert response != null;
+        if (!response.isSuccessful()) {
+            throw new Error("HTTP error Code: " + response.code());
         }
+    }
+
+    public static Response get(String url) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(BASE_URL + url)
+                .get()
+                .addHeader("Content-type", "application/json")
+                .addHeader("Authorization", "Bearer " + accessToken)
+                .build();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert response != null;
+        if(!response.isSuccessful()) {
+            throw  new Error("HTTP error code: " + response.code());
+        }
+        return response;
     }
 
 }

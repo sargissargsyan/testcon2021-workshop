@@ -33,4 +33,11 @@ public class ApiHelper {
     public static void deleteProject(JsonObject project) {
         Client.delete("/projects/", project);
     }
+
+    public static JsonObject getCurrentUser() throws IOException {
+        Response response;
+        response = Client.get("/users/me");
+        String jsonString = response.body().string();
+        return JsonParser.parseString(jsonString).getAsJsonObject();
+    }
 }
