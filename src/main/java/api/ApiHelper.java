@@ -1,9 +1,11 @@
 package api;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import okhttp3.Response;
 
+import javax.xml.stream.events.DTD;
 import java.io.IOException;
 import java.util.Date;
 
@@ -25,6 +27,12 @@ public class ApiHelper {
         response= Client.post("/issues", jsonIssue);
         String jsonString = response.body().string();
         return JsonParser.parseString(jsonString).getAsJsonObject();
+    }
+
+    public static JsonArray getAllProjects() throws IOException {
+        Response response = Client.get("/projects?member=" + getCurrentUser().get("id").getAsString());
+        String jsonString = response.body().string();
+        return JsonParser.parseString(jsonString).getAsJsonArray();
     }
 
     public static JsonObject createProject() throws IOException {
