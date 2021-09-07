@@ -12,6 +12,9 @@ import java.util.List;
  * @project testcon2021
  */
 public class DriverHelper {
+    public static DriverHelper get() {
+        return new DriverHelper();
+    }
 
     public WebDriver driver;
     private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
