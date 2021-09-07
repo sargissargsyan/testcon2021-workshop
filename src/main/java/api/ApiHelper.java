@@ -30,7 +30,8 @@ public class ApiHelper {
     }
 
     public static JsonArray getAllProjects() throws IOException {
-        Response response = Client.get("/projects?member=" + getCurrentUser().get("id").getAsString());
+        Response response = Client.get("/projects?member="
+                + getCurrentUser().get("id").getAsString());
         String jsonString = response.body().string();
         return JsonParser.parseString(jsonString).getAsJsonArray();
     }

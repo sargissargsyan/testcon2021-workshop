@@ -38,8 +38,6 @@ public class ProjectTest extends SeleniumBase {
                 ApiHelper.getCurrentUser().get("id").getAsString());
         ApiHelper.createIssue(issue);
         ProjectPage projectPage = new ProjectPage(project);
-
-
     }
 
     @AfterMethod
