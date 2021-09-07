@@ -29,4 +29,8 @@ public class ApiHelper {
         project.addProperty("is_private", false);
         return createProject(project);
     }
+
+    public static void deleteProject(JsonObject project) {
+        Client.delete("/projects/", project);
+    }
 }

@@ -64,4 +64,25 @@ public class Client {
         return response;
     }
 
+    public static void delete(String url, JsonObject object) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(BASE_URL + url + object.get("id").getAsString())
+                .delete()
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer " + accessToken)
+                .build();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert  response != null;
+        if(!response.isSuccessful()) {
+            throw  new Error("HTTP error Code: " + response.code());
+        }
+    }
+
 }
