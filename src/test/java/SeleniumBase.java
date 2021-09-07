@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import pages.LoginPage;
 
 /**
@@ -23,5 +24,10 @@ public class SeleniumBase {
         ((JavascriptExecutor) driver)
                 .executeScript("window.localStorage.setItem('userInfo','" +
                         userJson + "');");
+    }
+
+    @AfterMethod
+    public void cleanUpBase() {
+        DriverHelper.get().quitDriver(DriverHelper.get().getDriver());
     }
 }

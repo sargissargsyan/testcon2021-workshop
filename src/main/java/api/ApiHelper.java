@@ -20,6 +20,13 @@ public class ApiHelper {
         return JsonParser.parseString(jsonString).getAsJsonObject();
     }
 
+    public static JsonObject createIssue(JsonObject jsonIssue) throws IOException {
+        Response response;
+        response= Client.post("/issues", jsonIssue);
+        String jsonString = response.body().string();
+        return JsonParser.parseString(jsonString).getAsJsonObject();
+    }
+
     public static JsonObject createProject() throws IOException {
         JsonObject project = new JsonObject();
         project.addProperty("name",
@@ -30,8 +37,19 @@ public class ApiHelper {
         return createProject(project);
     }
 
+    public static JsonObject createIssue(int projectId) throws IOException {
+        JsonObject issue = new JsonObject();
+        issue.addProperty("subject", "TestCon Issue");
+        issue.addProperty("project", projectId);
+        issue.addProperty("description", "Test Description");
+        return createIssue(issue);
+    }
+
     public static void deleteProject(JsonObject project) {
         Client.delete("/projects/", project);
+    }
+    public static void deleteIssue(JsonObject issue) {
+        Client.delete("/issues/", issue);
     }
 
     public static JsonObject getCurrentUser() throws IOException {
@@ -40,4 +58,5 @@ public class ApiHelper {
         String jsonString = response.body().string();
         return JsonParser.parseString(jsonString).getAsJsonObject();
     }
+
 }
