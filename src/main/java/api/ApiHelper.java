@@ -29,11 +29,18 @@ public class ApiHelper {
         return JsonParser.parseString(jsonString).getAsJsonObject();
     }
 
+
     public static JsonArray getAllProjects() throws IOException {
         Response response = Client.get("/projects?member="
                 + getCurrentUser().get("id").getAsString());
         String jsonString = response.body().string();
         return JsonParser.parseString(jsonString).getAsJsonArray();
+    }
+
+    public static JsonObject getProject(int id) throws IOException {
+        Response response = Client.get("/projects/" + id);
+        String jsonString = response.body().string();
+        return JsonParser.parseString(jsonString).getAsJsonObject();
     }
 
     public static JsonObject createProject() throws IOException {

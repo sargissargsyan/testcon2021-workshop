@@ -3,6 +3,8 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 /**
  * @author Sargis Sargsyan on 9/7/21
  * @project testcon2021
@@ -16,7 +18,7 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public abstract String getUrl();
+    public abstract String getUrl() throws IOException;
 
 
 
